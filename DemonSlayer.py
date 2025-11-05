@@ -10,7 +10,7 @@ def add(a, b):
     Returns:
     - sum (int or float): The sum of a and b.
     """
-    return b + a
+    return b + c
 
 def subtract(a, b):
     """
