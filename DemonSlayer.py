@@ -1,5 +1,14 @@
 # DemonSlayer.py
 
+import logging
+
+# Basic logging configuration
+logging.basicConfig(
+    filename="app.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
 def add(a, b):
     """
     Function to add two numbers.
@@ -10,7 +19,10 @@ def add(a, b):
     Returns:
     - sum (int or float): The sum of a and b.
     """
-    return b + a
+    logging.info(f"add() called with a={a}, b={b}")
+    result = a + b
+    logging.info(f"add() result: {result}")
+    return result
 
 def subtract(a, b):
     """
@@ -22,4 +34,7 @@ def subtract(a, b):
     Returns:
     - result (int or float): The result of a - b.
     """
-    return a - b
+    logging.info(f"subtract() called with a={a}, b={b}")
+    result = a - b
+    logging.info(f"subtract() result: {result}")
+    return result
