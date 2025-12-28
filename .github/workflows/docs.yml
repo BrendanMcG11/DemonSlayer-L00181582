@@ -2,24 +2,32 @@ name: Docs
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ]
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   generate-docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v6
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
-      - name: Generate API docs
+
+      - name: Generate documentation (pydoc)
         run: |
           mkdir -p docs
           python -m pydoc -w DemonSlayer
           mv DemonSlayer.html docs/index.html
+
       - name: Upload docs artifact
         uses: actions/upload-artifact@v4
         with:
-          name: docs
+          name: documentation
           path: docs
